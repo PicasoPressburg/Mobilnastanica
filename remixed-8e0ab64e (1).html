@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NabiBajk s.r.o. - Mobilné nabíjanie elektrobicyklov</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: #1e40af;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .contact-header {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            color: #1e40af;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .contact-header a {
+            color: #1e40af;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-header a:hover {
+            color: #7c3aed;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 0 3rem;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease-out 0.3s both;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .main-content {
+            background: white;
+            margin: 2rem 0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .section {
+            padding: 3rem;
+        }
+
+        .section h2 {
+            font-size: 2.2rem;
+            color: #1e40af;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .product-highlight {
+            background: linear-gradient(135deg, #e0f2fe 0%, #f3e8ff 100%);
+            padding: 2.5rem;
+            border-radius: 15px;
+            text-align: center;
+            margin: 2rem 0;
+            border-left: 5px solid #1e40af;
+        }
+
+        .product-highlight h3 {
+            font-size: 2rem;
+            color: #1e40af;
+            margin-bottom: 1rem;
+        }
+
+        .capacity-info {
+            background: linear-gradient(135deg, #1e40af 0%, #7c3aed 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, #e0f2fe 0%, #f3e8ff 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            border-left: 4px solid #1e40af;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(30, 64, 175, 0.2);
+        }
+
+        .feature-card h3 {
+            color: #1e40af;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .usage-steps {
+            background: #F5F5F5;
+            padding: 3rem;
+            border-radius: 15px;
+            margin: 3rem 0;
+        }
+
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .step {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        .target-audience {
+            background: linear-gradient(135deg, #E3F2FD 0%, #F1F8E9 100%);
+            padding: 3rem;
+            border-radius: 15px;
+            margin: 3rem 0;
+        }
+
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .audience-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 500;
+            color: #2E7D32;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .contact-section {
+            background: linear-gradient(135deg, #2E7D32 0%, #1976D2 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            color: white;
+            margin-bottom: 2rem;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .contact-item {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-item h3 {
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+
+        .cta-buttons {
+            margin: 2rem 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            margin: 0.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #2E7D32;
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .contact-form {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: white;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            background: rgba(255,255,255,0.9);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section {
+                padding: 2rem;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .contact-header {
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">NabiBajk s.r.o.</div>
+                <div class="contact-header">
+                    <div>📞 <a href="tel:0905609831">0905 609 831</a></div>
+                    <div>✉️ <a href="mailto:info@nabibajk.sk">info@nabibajk.sk</a></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Mobilné nabíjanie pre váš elektrobicykel</h1>
+            <p>Profesionálne riešenie pre nabíjanie elektrobicyklov a kolobežiek na akýchkoľvek podujatiach a miestach</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="main-content">
+            <!-- O nás sekcia -->
+            <div class="section">
+                <h2>O našej firme</h2>
+                <p style="text-align: center; font-size: 1.1rem; color: #666; max-width: 800px; margin: 0 auto;">
+                    <strong>NabiBajk s.r.o.</strong> sa špecializuje na inovatívne riešenia pre nabíjanie elektrických bicyklov a kolobežiek. 
+                    Naša mobilná nabíjacia stanica (MNS) je ideálnym riešením pre organizátorov podujatí, samosprávy a všetkých, 
+                    ktorí chcú podporiť ekologickú dopravu.
+                </p>
+            </div>
+
+            <!-- Produkt sekcia -->
+            <div class="section">
+                <h2>Naš produkt - Mobilná nabíjacia stanica (MNS)</h2>
+                
+                <div class="product-highlight">
+                    <h3>🚴‍♂️ Mobilná nabíjacia stanica</h3>
+                    <div class="capacity-info">
+                        ⚡ Nabije naraz až 6 zariadení: 4 elektrobicykle + 2 elektrokolobežky ⚡
+                    </div>
+                    <p style="font-size: 1.1rem; color: #555;">
+                        Naša MNS je vybavená kolieskami pre ľahké premiestňovanie a pripája sa k štandardnej elektrickej sieti (230V). 
+                        Je to perfektné riešenie pre rôzne podujatia a miesta, kde ľudia potrebujú nabiť svoje elektrické vozidlá.
+                    </p>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🔌</div>
+                        <h3>Jednoduché použitie</h3>
+                        <p>Stačí pripojiť k elektrickej sieti 230V a stanica je pripravená na používanie</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🚚</div>
+                        <h3>Mobilnosť</h3>
+                        <p>Vybavená kolieskami - ľahko sa premiestni kamkoľvek potrebujete</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⏱️</div>
+                        <h3>Rýchle nabíjanie</h3>
+                        <p>Nabíjanie trvá zvyčajne do 45 minút - ideálne na krátkodobé prestávky</p>
+                    </div>
+                </div>
+
+                <div class="usage-steps">
+                    <h2 style="color: #1e40af;">Ako to funguje?</h2>
+                    <div class="steps-container">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <h4>Inštalácia</h4>
+                            <p>Poverený pracovník premiestni MNS na požadované miesto a pripojí k elektrickej sieti</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <h4>Pripojenie</h4>
+                            <p>Cyklista si zvesí príslušný nabíjací kábel a zapojí ho do batérie svojho vozidla</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <h4>Nabíjanie</h4>
+                            <p>Nabíjanie prebieha automaticky, po dokončení sa kábel zavesí späť na miesto</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="target-audience">
+                    <h2 style="color: #1e40af;">Pre koho je MNS ideálna?</h2>
+                    <div class="audience-grid">
+                        <div class="audience-item">🏃‍♂️ Športové podujatia</div>
+                        <div class="audience-item">🎵 Koncerty a festivaly</div>
+                        <div class="audience-item">🤝 Komunitné stretnutia</div>
+                        <div class="audience-item">🏢 Výstavy a veľtrhy</div>
+                        <div class="audience-item">🛒 Farmárske trhy</div>
+                        <div class="audience-item">🏛️ Samosprávy</div>
+                        <div class="audience-item">🏘️ Obce a mestá</div>
+                        <div class="audience-item">🏪 Obchodné centrá</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kontakt sekcia -->
+            <div class="section contact-section">
+                <h2>Kontaktujte nás</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 2rem;">
+                    Máte záujem o našu mobilnú nabíjaciu stanicu? Radi vám poskytneme viac informácií!
+                </p>
+
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <h3>📞 Telefón</h3>
+                        <a href="tel:0905609831">0905 609 831</a>
+                    </div>
+                    <div class="contact-item">
+                        <h3>✉️ E-mail</h3>
+                        <a href="mailto:info@nabibajk.sk">info@nabibajk.sk</a>
+                    </div>
+                </div>
+
+                <div class="cta-buttons">
+                    <a href="tel:0905609831" class="btn btn-primary">Zavolajte nám</a>
+                    <a href="mailto:info@nabibajk.sk?subject=Záujem o MNS" class="btn btn-secondary">Napíšte nám</a>
+                </div>
+
+                <div class="contact-form">
+                    <h3 style="margin-bottom: 1.5rem;">Alebo nám napíšte správu</h3>
+                    <form action="mailto:info@nabibajk.sk" method="post" enctype="text/plain">
+                        <div class="form-group">
+                            <label for="name">Meno a priezvisko:</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail:</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Telefón:</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Správa:</label>
+                            <textarea id="message" name="message" placeholder="Opíšte nám váš záujem o MNS - typ podujatia, počet účastníkov, dátum, miesto..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Odoslať správu</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Plynulé animácie pri scrollovaní
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Animácie pre karty a sekcie
+            document.querySelectorAll('.feature-card, .step, .audience-item').forEach(element => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(30px)';
+                element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(element);
+            });
+
+            // Plynulé scrollovanie pre odkazy
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Vylepšené hover efekty
+            document.querySelectorAll('.btn').forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-3px) scale(1.02)';
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
